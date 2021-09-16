@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    publicPath: "/",
   },
   devtool: "source-map",
   resolve: {
@@ -41,12 +42,6 @@ module.exports = {
               importLoaders: 0,
             },
           },
-          //{
-          //  loader: 'postcss-loader',
-          //  options: {
-          //    plugins: [require('autoprefixer')]
-          //  }
-          //}
         ],
       },
       {
@@ -72,17 +67,18 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      favicon: "./static/favicon.ico",
     }),
-    // 热更新
-    new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {
-    hot: true,
     open: false,
     port: 3000,
-    historyApiFallback: {
-      // browserHistory的时候，刷新会报404. 自动重定向到index.html
-      index: "./index.html",
-    },
+    historyApiFallback: true,
+    proxy: [
+      {
+        context: "/api",
+        target: "http://127.0.0.1:5000",
+      },
+    ],
   },
 };
