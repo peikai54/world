@@ -1,15 +1,14 @@
 import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
+  UnorderedListOutlined,
 } from "@ant-design/icons";
 import { Menu, Layout } from "antd";
 import React, { useState } from "react";
-import "./app-container.less";
-import Logo from "./svgs/product-logo";
+import "./index.less";
+import Logo from "../svgs/product-logo";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 
 interface IProps {
   children: JSX.Element;
@@ -30,11 +29,16 @@ const LogoSection = styled.section`
   }
 `;
 
-const { Sider, Header, Content } = Layout;
+const { Sider, Header } = Layout;
 
 const AppContainer = (props: IProps) => {
   const { children } = props;
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const history = useHistory();
+
+  const ToNav = (path: string) => {
+    history.push(path);
+  };
 
   return (
     <Layout style={{ height: "100%" }}>
@@ -46,14 +50,12 @@ const AppContainer = (props: IProps) => {
           {!isCollapsed && <div className="title">我的世界</div>}
         </LogoSection>
         <Menu mode="inline" defaultSelectedKeys={["1"]} theme="dark">
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            nav 1
-          </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-            nav 2
-          </Menu.Item>
-          <Menu.Item key="3" icon={<UploadOutlined />}>
-            nav 3
+          <Menu.Item
+            key="1"
+            icon={<UnorderedListOutlined />}
+            onClick={() => ToNav("/task")}
+          >
+            任务管理
           </Menu.Item>
         </Menu>
       </Sider>
@@ -74,16 +76,15 @@ const AppContainer = (props: IProps) => {
             {isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </section>
         </Header>
-        <Content
-          className="site-layout-background"
+        <section
           style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
+            overflow: "auto",
+            height: "100%",
+            backgroundColor: "#eff2f5",
           }}
         >
           {children}
-        </Content>
+        </section>
       </Layout>
     </Layout>
   );
