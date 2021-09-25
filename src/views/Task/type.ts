@@ -1,6 +1,6 @@
-import { TaskList } from "@/api/Task";
+import { GetTaskList } from "@/api/Task";
 
-export type ITaskList = TaskList.Response;
+export type ITaskList = GetTaskList.Response;
 
 export enum IFormType {
   Edit = "edit",

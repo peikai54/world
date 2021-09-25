@@ -17,7 +17,7 @@ http.interceptors.response.use(
   (response) => {
     const { code, message } = response.data;
     if (code === 0) {
-      return response;
+      return response.data;
     } else {
       const err = new Error(message);
       Object.defineProperty(err, "meta", { value: response });

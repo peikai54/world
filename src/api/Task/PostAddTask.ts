@@ -16,7 +16,7 @@ namespace AddTask {
     message: string;
   }
 
-  export const url = "/task/add";
+  export const url = "/add-task";
 
   export const request = (params: Params): Promise<Response> => {
     return http.post(url, { ...params });

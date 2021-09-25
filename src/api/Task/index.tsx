@@ -1,4 +1,6 @@
-import AddTask from "./AddTask";
-import TaskList from "./TaskList";
+import PostAddTask from "./PostAddTask";
+import GetTaskList from "./GetTaskList";
+import GetTaskTypeList from "./GetTaskTypeList";
+import GetTargetList from "./GetTargetList";
 
-export { TaskList, AddTask };
+export { GetTaskList, PostAddTask, GetTaskTypeList, GetTargetList };

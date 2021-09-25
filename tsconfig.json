@@ -7,7 +7,10 @@
     "target": "es5" /*转换为es5*/,
     "jsx": "react",
     "esModuleInterop": true,
+    "declaration": true,
     "baseUrl": ".", // 查找非相对路径的模块的起始位置
+    "noUnusedLocals": true,
+
     "paths": {
       // 定义别名
       "@/*": ["src/*"]
