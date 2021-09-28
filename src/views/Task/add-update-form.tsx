@@ -70,8 +70,13 @@ const FormComp = (props: IProps) => {
     }
 
     const values = form.getFieldsValue();
-    const start_time = moment(values.start_time).valueOf();
-    const end_time = moment(values.end_time).valueOf();
+    const start_time = moment(values.start_time).valueOf() / 1000;
+    const end_time = moment(values.end_time).valueOf() / 1000;
+
+    if (start_time >= end_time) {
+      message.error("开始时间必须在结束时间之前");
+      return;
+    }
 
     submit({ ...values, start_time, end_time });
   };

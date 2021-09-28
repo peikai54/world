@@ -1,6 +1,8 @@
 import { GetTaskList } from "@/api/Task";
 
-export type ITaskList = GetTaskList.Response;
+export type ITask = GetTaskList.Response["data"]["items"][0];
+
+export type IFilter = GetTaskList.Params;
 
 export enum IFormType {
   Edit = "edit",
