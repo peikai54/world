@@ -1,4 +1,4 @@
-import { GetTargetList, GetTaskList } from "@/api/Task";
+import { GetTaskList } from "@/api/Task";
 import { errorHandel } from "@/utils/handleError";
 import useRequest from "@ahooksjs/use-request";
 import { Table, TableColumnsType, Button } from "antd";
@@ -7,11 +7,11 @@ import React, { useEffect, useState } from "react";
 import { IFilter, ITask, TaskState, TaskStateText } from "./type";
 
 interface IProps {
-  filter?: IFilter;
+  filter: IFilter;
 }
 
 const TaskTable = (props: IProps) => {
-  const { filter } = props;
+  const { filter = {} } = props;
 
   const [dataSource, setDataSource] = useState<ITask[]>([]);
 
@@ -25,7 +25,7 @@ const TaskTable = (props: IProps) => {
 
   useEffect(() => {
     getTaskList(filter);
-  }, []);
+  }, [filter]);
 
   const columns: TableColumnsType<ITask> = [
     {
@@ -93,15 +93,13 @@ const TaskTable = (props: IProps) => {
   ];
 
   return (
-    <>
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        loading={loading}
-        bordered
-        rowKey={(record) => record.task_id}
-      />
-    </>
+    <Table
+      columns={columns}
+      dataSource={dataSource}
+      loading={loading}
+      rowKey={(record) => record.task_id}
+      bordered
+    />
   );
 };
 

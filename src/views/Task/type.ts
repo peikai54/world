@@ -24,3 +24,26 @@ export enum TaskStateText {
   Fail = "已失败",
   Stop = "已停止",
 }
+
+export const TaskStateList = [
+  {
+    state: TaskState.Pending,
+    text: TaskStateText.Pending,
+  },
+  {
+    state: TaskState.Runing,
+    text: TaskStateText.Runing,
+  },
+  {
+    state: TaskState.Success,
+    text: TaskStateText.Success,
+  },
+  {
+    state: TaskState.Fail,
+    text: TaskStateText.Fail,
+  },
+  {
+    state: TaskState.Stop,
+    text: TaskStateText.Stop,
+  },
+];

@@ -4,12 +4,14 @@ import WrapContent from "@/components/WrapContent";
 import { Button } from "antd";
 import React, { useState } from "react";
 import FormComp from "./add-update-form";
+import SearchForm from "./search-form";
 import TaskTable from "./table";
-import { IFormType } from "./type";
+import { IFilter, IFormType } from "./type";
 
 const Task = () => {
   const [formVisible, setFormVisible] = useState<boolean>(false);
   const [formType, setFormType] = useState<IFormType>(IFormType.Add);
+  const [filter, setFilter] = useState<IFilter>({});
 
   return (
     <WrapContent>
@@ -29,7 +31,8 @@ const Task = () => {
           }
         />
         <MainContent>
-          <TaskTable />
+          <SearchForm onChange={(filter) => setFilter(filter)} />
+          <TaskTable filter={filter} />
         </MainContent>
         <FormComp
           onCancel={() => setFormVisible(false)}
